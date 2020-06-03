@@ -12,13 +12,19 @@ export default function TodoForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <input type="submit" value="Add" />
+    <form className="form-inline mb-3" onSubmit={handleSubmit}>
+      <div className="input-group">
+        <div className="input-group-prepend">
+          <span className="input-group-text">Task</span>
+        </div>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          className="form-control"
+        />
+      </div>
+      <input className="btn green-button ml-md-2" type="submit" value="ADD" />
     </form>
   );
 }
