@@ -12,7 +12,10 @@ export default function TodoForm() {
   };
 
   return (
-    <form className="form-inline mb-3" onSubmit={handleSubmit}>
+    <form
+      className="d-flex flex-column flex-sm-row justify-content-between mb-3"
+      onSubmit={handleSubmit}
+    >
       <div className="input-group">
         <div className="input-group-prepend">
           <span className="input-group-text">Task</span>
@@ -24,7 +27,11 @@ export default function TodoForm() {
           className="form-control"
         />
       </div>
-      <input className="btn green-button ml-md-2" type="submit" value="ADD" />
+      <input
+        className="btn green-button ml-sm-1 mt-3 mt-sm-0 font-weight-bold"
+        type="submit"
+        value="ADD"
+      />
     </form>
   );
 }

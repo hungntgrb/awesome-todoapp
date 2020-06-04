@@ -19,33 +19,28 @@ code {
 }
 
 .red-button {
-  background-color: #f94144;
-  color: #111;
+  color: #f94144;
 }
 .green-button {
-  background-color: #90be6d;
+  background-color: #43aa8b;
+  border: 1px solid #555;
 }
 
-.App {
-  max-width: 720px;
+#root {
+  max-width: 680px;
   background-color: #f9c74f;
   padding: 1rem;
   border-radius: 1rem;
   position: relative;
 }
 
-.foot-wrap {
-  width: 100%;
-  position: absolute;
-  left: 50%;
-  bottom: -4.8rem;
-}
-
 footer {
+  min-width: 380px;
   padding: 1rem;
-  border-radius: 5px;
-  background-color: #577590;
+  margin-top: 1.6rem;
+  background-color: lightskyblue;
+  color: #555;
+  border-radius: 0.4rem;
   text-align: center;
   position: relative;
-  left: -50%;
 }
