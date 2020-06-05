@@ -1,11 +1,17 @@
 import React, { useContext } from "react";
 import { TodoContext } from "../contexts/TodoContext";
+import { EditingContext } from "../contexts/EditingContext";
 
 export default function TodoList() {
   const { todos, dispatch } = useContext(TodoContext);
+  const { editingState, editingDispatch } = useContext(EditingContext);
 
   const handleClick = (todo) => {
     dispatch({ type: "DELETE", id: todo.id });
+  };
+
+  const handleEditing = (todo) => {
+    editingDispatch({ type: "EDIT_ON", text: todo.text });
   };
 
   return todos.length ? (
@@ -16,6 +22,7 @@ export default function TodoList() {
           className="list-group-item d-flex justify-content-between align-items-center bg-light"
         >
           <span>{todo.text}</span>
+          <button onClick={() => handleEditing(todo)}>Edit</button>
           <svg
             onClick={() => handleClick(todo)}
             class="bi bi-trash-fill red-button"

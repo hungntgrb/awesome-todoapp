@@ -1,14 +1,17 @@
 import React, { useState, useContext } from "react";
 import { TodoContext } from "../contexts/TodoContext";
+import { EditingContext } from "../contexts/EditingContext";
 
 export default function TodoForm() {
   const { dispatch } = useContext(TodoContext);
-  const [input, setInput] = useState("");
+  const { editingState, editingDispatch } = useContext(EditingContext);
+  // const [input, setInput] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: "ADD", text: input });
-    setInput("");
+    dispatch({ type: "ADD", text: editingState.activeText });
+    editingDispatch({ type: "EDIT_OFF" });
+    // setInput("");
   };
 
   return (
@@ -22,8 +25,10 @@ export default function TodoForm() {
         </div>
         <input
           type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          value={editingState.activeText}
+          onChange={(e) =>
+            editingDispatch({ type: "UPDATE", text: e.target.value })
+          }
           className="form-control"
         />
       </div>
