@@ -1,17 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { TodoContext } from "../contexts/TodoContext";
 import { EditingContext } from "../contexts/EditingContext";
 
 export default function TodoForm() {
   const { dispatch } = useContext(TodoContext);
   const { editingState, editingDispatch } = useContext(EditingContext);
-  // const [input, setInput] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: "ADD", text: editingState.activeText });
+    editingState.isEditing
+      ? dispatch({
+          type: "UPDATE",
+          text: editingState.activeText,
+          id: editingState.activeId,
+        })
+      : dispatch({ type: "ADD", text: editingState.activeText });
+
     editingDispatch({ type: "EDIT_OFF" });
-    // setInput("");
   };
 
   return (
@@ -33,9 +38,11 @@ export default function TodoForm() {
         />
       </div>
       <input
-        className="btn green-button ml-sm-1 mt-3 mt-sm-0 font-weight-bold"
+        className={"btn ml-sm-2 mt-3 mt-sm-0 font-weight-bold ".concat(
+          editingState.isEditing ? "edit-button" : "green-button"
+        )}
         type="submit"
-        value="ADD"
+        value={editingState.isEditing ? "SAVE" : "ADD"}
       />
     </form>
   );

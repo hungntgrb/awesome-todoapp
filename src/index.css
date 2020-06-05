@@ -26,6 +26,14 @@ code {
   border: 1px solid #555;
 }
 
+.edit-button {
+  background-color: #ff9494;
+  border: 1px solid #555;
+}
+.orange-color {
+  color: #ff7d7d;
+}
+
 #root {
   max-width: 680px;
   background-color: #f9c74f;
