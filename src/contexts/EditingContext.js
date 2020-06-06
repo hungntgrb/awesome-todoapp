@@ -6,6 +6,8 @@ export const EditingContext = createContext();
 export default function EditingContextProvider(props) {
   const [editingState, editingDispatch] = useReducer(EditingReducer, {
     activeText: "",
+    activeId: "",
+    activeCompleted: false,
     isEditing: false,
   });
 

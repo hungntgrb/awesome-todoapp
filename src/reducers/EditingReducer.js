@@ -1,9 +1,15 @@
 export default function EditingReducer(state, action) {
   switch (action.type) {
     case "EDIT_ON":
-      return { activeText: action.text, activeId: action.id, isEditing: true };
+      return {
+        ...state,
+        activeText: action.text,
+        activeId: action.id,
+        completed: action.completed,
+        isEditing: true,
+      };
     case "EDIT_OFF":
-      return { activeText: "", activeId: "", isEditing: false };
+      return { ...state, activeText: "", activeId: "", isEditing: false };
     case "UPDATE":
       return { ...state, activeText: action.text };
     default:

@@ -52,3 +52,10 @@ footer {
   text-align: center;
   position: relative;
 }
+.crossed {
+  text-decoration: line-through;
+  color: #eee;
+}
+.li-crossed {
+  background-color: #444;
+}

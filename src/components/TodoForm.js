@@ -3,18 +3,19 @@ import { TodoContext } from "../contexts/TodoContext";
 import { EditingContext } from "../contexts/EditingContext";
 
 export default function TodoForm() {
-  const { dispatch } = useContext(TodoContext);
+  const { todoDispatch } = useContext(TodoContext);
   const { editingState, editingDispatch } = useContext(EditingContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     editingState.isEditing
-      ? dispatch({
+      ? todoDispatch({
           type: "UPDATE",
-          text: editingState.activeText,
           id: editingState.activeId,
+          text: editingState.activeText,
+          completed: editingState.completed,
         })
-      : dispatch({ type: "ADD", text: editingState.activeText });
+      : todoDispatch({ type: "ADD", text: editingState.activeText });
 
     editingDispatch({ type: "EDIT_OFF" });
   };

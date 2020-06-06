@@ -3,15 +3,24 @@ import { TodoContext } from "../contexts/TodoContext";
 import { EditingContext } from "../contexts/EditingContext";
 
 export default function TodoList() {
-  const { todos, dispatch } = useContext(TodoContext);
+  const { todos, todoDispatch } = useContext(TodoContext);
   const { editingDispatch } = useContext(EditingContext);
 
   const handleClick = (todo) => {
-    dispatch({ type: "DELETE", id: todo.id });
+    todoDispatch({ type: "DELETE", id: todo.id });
   };
 
   const handleEditing = (todo) => {
-    editingDispatch({ type: "EDIT_ON", text: todo.text, id: todo.id });
+    editingDispatch({
+      type: "EDIT_ON",
+      text: todo.text,
+      id: todo.id,
+      completed: todo.completed,
+    });
+  };
+
+  const handleComplete = (todo) => {
+    todoDispatch({ type: "ON_OFF", id: todo.id });
   };
 
   return todos.length ? (
@@ -19,9 +28,16 @@ export default function TodoList() {
       {todos.map((todo) => (
         <li
           key={todo.id}
-          className="list-group-item d-flex justify-content-between align-items-center bg-light"
+          className={"list-group-item d-flex justify-content-between align-items-center".concat(
+            todo.completed ? " li-crossed" : " bg-light"
+          )}
         >
-          <span>{todo.text}</span>
+          <span
+            className={todo.completed ? "crossed" : ""}
+            onClick={() => handleComplete(todo)}
+          >
+            {todo.text}
+          </span>
           <div className="buttons">
             <div
               className="orange-color d-inline"
